@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+
+</head>
+<body>
+
+	<header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> aa@aaa.com</li>
+                                <li>aaaa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="/static/img/language.png" alt="">
+                                <div>EN</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">TR</a></li>
+                                    <li><a href="#">EN</a></li>
+                                </ul>
+                            </div>
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="/static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>MENU
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#">meeting</i> <span>1</span></a></li>
+                            <li><a href="#">shopinf list</i> <span>3</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid" id="wrapper">
+			<div class="row">
+				<div class="col-lg-6 col-md-6" id="content">
+					<h2>Planı yaziniz?</h2>
+
+
+					<form action="{{ url_for('add_todo') }}" method="POST" role="form">
+
+
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="col-lg-10">
+									<input name="new-title" type="text" class="form-control" placeholder="Plan Başlığı" aria-label="Todo" aria-describedby="add-btn">
+								<br/></div >
+								<div class="col-lg-10">
+									<input name="new-description" type="text" class="form-control" placeholder="Planı İçeriği" aria-label="Todo" aria-describedby="add-btn">
+								<br/></div>
+								<div class="col-lg-10">
+									<input name="new-create-date"   type="datetime-local" class="form-control" aria-label="Todo" aria-describedby="add-btn">
+								<br/></div>
+								<div class="col-lg-10">
+									<input name="new-update-date" type="datetime-local" class="form-control"aria-label="Todo" aria-describedby="add-btn">
+								<br/></div>
+								<div class="col-lg-2">
+									<input name="new-is-completed" type="checkbox"  value="false" class="form-control" placeholder="Tamamlandi" aria-label="Todo" aria-describedby="add-btn">
+								</div>
+
+								<div class="col-lg-5">
+								<span class="input-group-btn">
+								  <button type="submit" class="btn btn btn-warning" id="add-btn">Ekle</button>
+							  	</span>
+								</div>
+							</div>
+						</div>
+
+					</form>
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<a type="button" href="{{ url_for('delete_completed') }}" class="btn btn-warning">
+										SIL
+									</a>
+								</div>
+								<div class="btn-group">
+									<a type="button" href="{{ url_for('delete_all') }}" class="btn btn-warning">
+										HEPSINI SIL
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group t20">
+
+
+						{% for todo in todos %}
+						<a href="{{ url_for('complete', oid=todo._id )}}">
+							<li class="list-group-item {% if todo.complete %}todo-completed{% endif %}">
+								{{ todo.text }}
+								{{ todo.description }}
+								{{ todo.created_date }}
+								{{ todo.updated_date }}
+								{{ todo.is_completed }}
+							</li>
+						</a>
+
+						{% endfor %}
+
+
+
+					</ul>
+				</div>
+			</div>
+
+			<footer>
+				<div class="row pad">
+					<div class="col-lg-12 text-center">
+						 <strong>TODO UYGULAMASI </strong>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+</body>
+</html>
