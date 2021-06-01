@@ -9,4 +9,4 @@ source venv/bin/activate
 
 path of api->fset FLASK_APP=api
 path of api->flask run
- * Running on http://127.0.0.1:5000/  default host
+ * Running on http://127.0.0.1:5000/  default
