@@ -137,22 +137,32 @@
 					</div>
 
 					<ul class="list-group t20">
-
-
+						
+						
+					<table style="width:100%">
+						  <tr>
+						    <th>Baslik</th>
+						    <th>İcerik</th> 
+						    <th>Olusturma Tarih</th>
+				  		    <th>Gunceleme Tarihi</th>
+						    <th>Tamamlandi</th>
+						  </tr>
+							
 						{% for todo in todos %}
+						<tr>
 						<a href="{{ url_for('complete', oid=todo._id )}}">
 							<li class="list-group-item {% if todo.complete %}todo-completed{% endif %}">
-								{{ todo.text }}
-								{{ todo.description }}
-								{{ todo.created_date }}
-								{{ todo.updated_date }}
-								{{ todo.is_completed }}
+								<td>{{ todo.text }}</td>
+								<td>{{ todo.description }}</td>
+								<td>{{ todo.created_date }}</td>
+								<td>{{ todo.updated_date }}</td>
+								<td>{{ todo.is_completed }}</td>
 							</li>
 						</a>
+						</tr>
 
 						{% endfor %}
-
-
+					</table>
 
 					</ul>
 				</div>
